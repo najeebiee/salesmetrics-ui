@@ -14,7 +14,7 @@ import { UsersTable } from "@/components/daily-sales/UsersTable";
 import { ExpensesForm } from "@/components/encoder/ExpensesForm";
 import { LeaderSelector } from "@/components/encoder/LeaderSelector";
 import { TargetRatioForm } from "@/components/encoder/TargetRatioForm";
-import { TopHeader } from "@/components/layout/TopHeader";
+import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import {
   cashOnHandRows,
@@ -44,14 +44,11 @@ export default function DailySalesPage() {
   const [isPrintPreviewOpen, setIsPrintPreviewOpen] = useState(false);
 
   return (
-    <section className="space-y-4">
-      <TopHeader
-        title="Daily Sales"
-        subtitle="DailySales/Index - mock multi-tab workspace"
-      />
-
-      <Tabs items={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
-
+    <PageShell
+      title="Daily Sales"
+      subtitle="DailySales/Index - mock multi-tab workspace"
+      headerCenter={<Tabs items={tabs} activeTab={activeTab} onTabChange={setActiveTab} />}
+    >
       {activeTab === "dashboard" ? (
         <div className="space-y-4">
           <SalesOverviewKPIs kpis={salesOverviewKpis} />
@@ -87,6 +84,6 @@ export default function DailySalesPage() {
       ) : null}
 
       <PrintPreviewModal isOpen={isPrintPreviewOpen} onClose={() => setIsPrintPreviewOpen(false)} />
-    </section>
+    </PageShell>
   );
 }

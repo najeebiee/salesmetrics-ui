@@ -23,16 +23,18 @@ export default function SalesPage() {
       <PageShell
         title="Sales API Dashboard"
         subtitle={salesDataset.label}
+        headerCenter={
+          <TimeRangeSelector
+            value={range}
+            onChange={setRange}
+            customStartDate={customStartDate}
+            customEndDate={customEndDate}
+            onCustomStartDateChange={setCustomStartDate}
+            onCustomEndDateChange={setCustomEndDate}
+          />
+        }
         actions={<Button onClick={() => setIsSyncOpen(true)}>Sync Sales</Button>}
       >
-        <TimeRangeSelector
-          value={range}
-          onChange={setRange}
-          customStartDate={customStartDate}
-          customEndDate={customEndDate}
-          onCustomStartDateChange={setCustomStartDate}
-          onCustomEndDateChange={setCustomEndDate}
-        />
         <SummaryCardGrid stats={salesDataset.summary} />
         <AgentCardGrid agents={salesDataset.agents} onAgentSelect={setSelectedAgent} />
       </PageShell>
